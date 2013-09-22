@@ -116,7 +116,7 @@ public class DumbWarp extends JavaPlugin{
 	}
 
 	private void sendMessage(CommandSender sender, String message){
-		sendMessage(sender, ChatColor.GRAY + "[DumbWarp] " + ChatColor.WHITE + message);
+		sender.sendMessage(ChatColor.GRAY + "[DumbWarp] " + ChatColor.WHITE + message);
 	}
 
 }
