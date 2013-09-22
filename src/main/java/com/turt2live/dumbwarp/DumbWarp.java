@@ -1,5 +1,7 @@
 package com.turt2live.dumbwarp;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -90,6 +92,21 @@ public class DumbWarp extends JavaPlugin{
 			throw new IllegalArgumentException("NO! I DO NOT WANT NULL. GIMMEH REAL OBJECTS.");
 		}
 		return warps.get(name.toLowerCase());
+	}
+
+	/**
+	 * Gets a listing of all warps known
+	 * 
+	 * @return a listing of all the known warps
+	 */
+	public static List<WarpInfo> getAllWarps(){
+		List<WarpInfo> warps = new ArrayList<WarpInfo>();
+		for(String name : DumbWarp.warps.keySet()){
+			Warp warp = DumbWarp.warps.get(name);
+			WarpInfo warpEntry = new WarpInfo(name, warp);
+			warps.add(warpEntry);
+		}
+		return warps;
 	}
 
 	@Override
@@ -201,6 +218,42 @@ public class DumbWarp extends JavaPlugin{
 					sendMessage(sender, ChatColor.RED + "No.");
 				}
 			}
+		}else if(command.getName().equalsIgnoreCase("warps")){
+			if(!sender.hasPermission("DumbWarp.list")){
+				sendMessage(sender, ChatColor.RED + "No permission.");
+			}else{
+				List<WarpInfo> warps = getAllWarps();
+				int startAt = 0;
+				if(args.length > 0){
+					try{
+						int i = Integer.parseInt(args[0]) - 1;
+						if(i < 0){
+							i = 0;
+						}
+						startAt = i * 8;
+					}catch(NumberFormatException e){
+						sendMessage(sender, ChatColor.RED + "Incorrect syntax. Try " + ChatColor.YELLOW + "/warps <page number>" + ChatColor.RED + ".");
+						return true;
+					}
+				}
+				int pages = (int) Math.ceil(warps.size() / 8.0);
+				int page = (int) (startAt / 8.0) + 1;
+				if(page > pages){
+					sendMessage(sender, ChatColor.RED + "Page out of range.");
+				}else{
+					sendMessage(sender, ChatColor.DARK_GREEN + "====[ " + ChatColor.GREEN + "Known Warps " + ChatColor.DARK_GREEN + "|" + ChatColor.GREEN + " Page " + page + "/" + pages + ChatColor.DARK_GREEN + " ]====");
+					for(int i = startAt; i < (startAt + 8); i++){
+						if(i < warps.size()){
+							WarpInfo warpInfo = warps.get(i);
+							Warp warp = warpInfo.getWarp();
+							sendMessage(sender, ChatColor.AQUA + warpInfo.getName() + " " + ChatColor.GRAY + "(" + warp.getWorld() + ", " + round(warp.getX(), 2) + ", " + round(warp.getY(), 2) + ", " + round(warp.getZ(), 2) + ")");
+						}else{
+							break;
+						}
+					}
+					sendMessage(sender, ChatColor.DARK_GREEN + "====[ " + ChatColor.GREEN + "Known Warps " + ChatColor.DARK_GREEN + "|" + ChatColor.GREEN + " Page " + page + "/" + pages + ChatColor.DARK_GREEN + " ]====");
+				}
+			}
 		}else{
 			sendMessage(sender, ChatColor.RED + "Something broke.");
 		}
@@ -209,6 +262,10 @@ public class DumbWarp extends JavaPlugin{
 
 	private void sendMessage(CommandSender sender, String message){
 		sender.sendMessage(ChatColor.GRAY + "[DumbWarp] " + ChatColor.WHITE + message);
+	}
+
+	private double round(double v, int n){
+		return new BigDecimal(v).setScale(n, RoundingMode.HALF_EVEN).doubleValue();
 	}
 
 }

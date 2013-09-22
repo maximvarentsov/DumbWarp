@@ -74,4 +74,58 @@ public class Warp{
 		config.set(name + ".yaw", yaw);
 	}
 
+	/**
+	 * Gets the world associated with this warp
+	 * 
+	 * @return the world name
+	 */
+	public String getWorld(){
+		return world;
+	}
+
+	/**
+	 * Gets the x coordinate associated with this warp
+	 * 
+	 * @return the x value
+	 */
+	public double getX(){
+		return x;
+	}
+
+	/**
+	 * Gets the y coordinate associated with this warp
+	 * 
+	 * @return the y value
+	 */
+	public double getY(){
+		return y;
+	}
+
+	/**
+	 * Gets the z coordinate associated with this warp
+	 * 
+	 * @return the z value
+	 */
+	public double getZ(){
+		return z;
+	}
+
+	/**
+	 * Gets the pitch associated with this warp
+	 * 
+	 * @return the pitch
+	 */
+	public float getPitch(){
+		return pitch;
+	}
+
+	/**
+	 * Gets the yaw associated with this warp
+	 * 
+	 * @return the yaw
+	 */
+	public float getYaw(){
+		return yaw;
+	}
+
 }

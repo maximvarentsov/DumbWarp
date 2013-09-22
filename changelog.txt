@@ -5,7 +5,7 @@
 - Removal
 
 Since 1.0.1:
-- Nothing!
++ Added /warps
 
 Known Bugs:
 - None!

@@ -12,6 +12,8 @@ commands:
     description: Goes to a warp
   delwarp:
     description: Deletes a warp
+  warps:
+    description: Lists all known warps
 permissions:
     DumbWarp.*:
       description: All DW commands
@@ -20,6 +22,10 @@ permissions:
         DumbWarp.warp: true
         DumbWarp.set: true
         DumbWarp.del: true
+        DumbWarp.list: true
+    DumbWarp.list:
+      description: Allows /warps
+      default: true
     DumbWarp.warp:
       description: Allows /warp
       default: true
