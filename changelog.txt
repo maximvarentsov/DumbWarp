@@ -1,0 +1,14 @@
+[Legend]
++ Addition
+= Fix
+! Change
+- Removal
+
+Since 1.0.0:
+= Fix an oopsie
+
+Known Bugs:
+- None!
+
+Planned:
+- Full API
