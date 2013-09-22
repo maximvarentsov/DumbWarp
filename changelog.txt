@@ -4,9 +4,8 @@
 ! Change
 - Removal
 
-Since 1.0.0:
-+ API
-= Warps not saving
+Since 1.0.1:
+- Nothing!
 
 Known Bugs:
 - None!
