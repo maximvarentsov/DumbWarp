@@ -1,6 +1,8 @@
 package com.turt2live.dumbwarp;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.bukkit.ChatColor;
@@ -14,7 +16,81 @@ public class DumbWarp extends JavaPlugin{
 
 	public static DumbWarp p;
 
-	private Map<String, Warp> warps = new HashMap<String, Warp>();
+	private static Map<String, Warp> warps = new HashMap<String, Warp>();
+
+	/**
+	 * Adds a warp to the plugin
+	 * 
+	 * @param name the warp name, spaces and other invalid characters are removed
+	 * @param warp the warp
+	 * @return true if the warp was added, false otherwise
+	 */
+	public static boolean addWarp(String name, Warp warp){
+		if(name != null){
+			name = name.trim();
+			name = name.replaceAll(" ", "");
+		}
+		if(name == null || warp == null || name.length() == 0){
+			throw new IllegalArgumentException("NO! I DO NOT WANT NULL. GIMMEH REAL OBJECTS.");
+		}
+		if(warpExists(name)){
+			return false;
+		}else{
+			warps.put(name.toLowerCase(), warp);
+			return true;
+		}
+	}
+
+	/**
+	 * Determines if a warp name exists
+	 * 
+	 * @param name the name to look for. Spaces and other invalid characters are removed.
+	 * @return true if the warp name exists, false otherwise
+	 */
+	public static boolean warpExists(String name){
+		if(name != null){
+			name = name.trim();
+			name = name.replaceAll(" ", "");
+			if(name.length() > 0){
+				return warps.containsKey(name.toLowerCase());
+			}
+		}
+		return false;
+	}
+
+	/**
+	 * Removes a warp by name
+	 * 
+	 * @param name the warp name to remove. Spaces and other invalid characters are removed
+	 * @return true if the warp was removed, false otherwise
+	 */
+	public static boolean removeWarp(String name){
+		if(name != null){
+			name = name.trim();
+			name = name.replaceAll(" ", "");
+		}
+		if(name == null || name.length() == 0){
+			throw new IllegalArgumentException("NO! I DO NOT WANT NULL. GIMMEH REAL OBJECTS.");
+		}
+		return warps.remove(name.toLowerCase()) != null;
+	}
+
+	/**
+	 * Removes a warp by name
+	 * 
+	 * @param name the name to remove. Spaces and other invalid characters are removed
+	 * @return the warp found, null if no warp by that name is found
+	 */
+	public static Warp getWarp(String name){
+		if(name != null){
+			name = name.trim();
+			name = name.replaceAll(" ", "");
+		}
+		if(name == null || name.length() == 0){
+			throw new IllegalArgumentException("NO! I DO NOT WANT NULL. GIMMEH REAL OBJECTS.");
+		}
+		return warps.get(name.toLowerCase());
+	}
 
 	@Override
 	public void onEnable(){
@@ -41,6 +117,22 @@ public class DumbWarp extends JavaPlugin{
 	@Override
 	public void onDisable(){
 		p = null;
+
+		// First: Delete all warps, so we can cleanup old ones
+		List<String> del = new ArrayList<String>();
+		for(String key : getConfig().getKeys(false)){
+			del.add(key);
+		}
+		for(String key : del){
+			getConfig().set(key, null);
+		}
+
+		// Save warps
+		for(String name : warps.keySet()){
+			warps.get(name).save(name, getConfig());
+		}
+		saveConfig();
+
 		warps.clear(); // Just in case
 		getLogger().info("Disabled! (DumbWarp v" + getDescription().getVersion() + " ~~ Created by turt2live)");
 	}

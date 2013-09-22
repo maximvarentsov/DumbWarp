@@ -1,6 +1,7 @@
 package com.turt2live.dumbwarp;
 
 import org.bukkit.Location;
+import org.bukkit.configuration.file.FileConfiguration;
 
 /**
  * Represents a warp
@@ -56,6 +57,21 @@ public class Warp{
 	 */
 	public Location toBukkit(){
 		return new Location(DumbWarp.p.getServer().getWorld(world), x, y, z, yaw, pitch);
+	}
+
+	/**
+	 * Saves the warp to a configuration file.
+	 * 
+	 * @param name the name to save it under
+	 * @param config The config file to save to
+	 */
+	public void save(String name, FileConfiguration config){
+		config.set(name + ".world", world);
+		config.set(name + ".x", x);
+		config.set(name + ".y", y);
+		config.set(name + ".z", z);
+		config.set(name + ".pitch", pitch);
+		config.set(name + ".yaw", yaw);
 	}
 
 }
