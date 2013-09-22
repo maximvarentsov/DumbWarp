@@ -4,8 +4,8 @@
 ! Change
 - Removal
 
-Since 1.0.1:
-+ Added /warps
+Since 1.0.2:
+- Nothing
 
 Known Bugs:
 - None!
