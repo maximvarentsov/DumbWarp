@@ -51,7 +51,7 @@
 
   <build>
     <defaultGoal>clean package</defaultGoal>
-    <finalName>AntiShare</finalName>
+    <finalName>DumbWarp</finalName>
     <!-- Distribution Management -->
     <extensions>
       <extension>
