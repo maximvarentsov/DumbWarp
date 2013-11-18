@@ -8,7 +8,7 @@ import org.bukkit.configuration.file.FileConfiguration;
  * 
  * @author turt2live
  */
-public class Warp{
+public class Warp {
 
 	private String world;
 	private double x, y, z;
@@ -24,8 +24,8 @@ public class Warp{
 	 * @param pitch the pitch
 	 * @param yaw the yaw
 	 */
-	public Warp(String worldName, double x, double y, double z, float pitch, float yaw){
-		if(worldName == null){
+	public Warp(String worldName, double x, double y, double z, float pitch, float yaw) {
+		if (worldName == null) {
 			throw new IllegalArgumentException("No dumb names");
 		}
 		this.world = worldName;
@@ -41,7 +41,7 @@ public class Warp{
 	 * 
 	 * @param location the location for the warp
 	 */
-	public Warp(Location location){
+	public Warp(Location location) {
 		this.world = location.getWorld().getName();
 		this.x = location.getX();
 		this.y = location.getY();
@@ -55,7 +55,7 @@ public class Warp{
 	 * 
 	 * @return the Bukkit location
 	 */
-	public Location toBukkit(){
+	public Location toBukkit() {
 		return new Location(DumbWarp.p.getServer().getWorld(world), x, y, z, yaw, pitch);
 	}
 
@@ -65,7 +65,7 @@ public class Warp{
 	 * @param name the name to save it under
 	 * @param config The config file to save to
 	 */
-	public void save(String name, FileConfiguration config){
+	public void save(String name, FileConfiguration config) {
 		config.set(name + ".world", world);
 		config.set(name + ".x", x);
 		config.set(name + ".y", y);
@@ -79,7 +79,7 @@ public class Warp{
 	 * 
 	 * @return the world name
 	 */
-	public String getWorld(){
+	public String getWorld() {
 		return world;
 	}
 
@@ -88,7 +88,7 @@ public class Warp{
 	 * 
 	 * @return the x value
 	 */
-	public double getX(){
+	public double getX() {
 		return x;
 	}
 
@@ -97,7 +97,7 @@ public class Warp{
 	 * 
 	 * @return the y value
 	 */
-	public double getY(){
+	public double getY() {
 		return y;
 	}
 
@@ -106,7 +106,7 @@ public class Warp{
 	 * 
 	 * @return the z value
 	 */
-	public double getZ(){
+	public double getZ() {
 		return z;
 	}
 
@@ -115,7 +115,7 @@ public class Warp{
 	 * 
 	 * @return the pitch
 	 */
-	public float getPitch(){
+	public float getPitch() {
 		return pitch;
 	}
 
@@ -124,7 +124,7 @@ public class Warp{
 	 * 
 	 * @return the yaw
 	 */
-	public float getYaw(){
+	public float getYaw() {
 		return yaw;
 	}
 

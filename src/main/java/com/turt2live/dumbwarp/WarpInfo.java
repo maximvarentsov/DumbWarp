@@ -5,12 +5,12 @@ package com.turt2live.dumbwarp;
  * 
  * @author turt2live
  */
-public class WarpInfo{
+public class WarpInfo {
 
 	private String name;
 	private Warp warp;
 
-	WarpInfo(String name, Warp warp){
+	WarpInfo(String name, Warp warp) {
 		this.name = name;
 		this.warp = warp;
 	}
@@ -20,7 +20,7 @@ public class WarpInfo{
 	 * 
 	 * @return the name
 	 */
-	public String getName(){
+	public String getName() {
 		return name;
 	}
 
@@ -29,7 +29,7 @@ public class WarpInfo{
 	 * 
 	 * @return the warp
 	 */
-	public Warp getWarp(){
+	public Warp getWarp() {
 		return warp;
 	}
 
