@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -128,7 +129,7 @@ public class DumbWarp extends JavaPlugin {
 		}
 
 		getLogger().info(warps.size() + " warps loaded!");
-		getLogger().info("Enabled! (DumbWarp v" + getDescription().getVersion() + " ~~ Created by turt2live)");
+		getLogger().log(Level.INFO, "[DumbWarp] Enabled v" + getDescription.getVersion() + "! Created by turt2live, have fun with very dumb warps!");
 	}
 
 	@Override
@@ -151,7 +152,7 @@ public class DumbWarp extends JavaPlugin {
 		saveConfig();
 
 		warps.clear(); // Just in case
-		getLogger().info("Disabled! (DumbWarp v" + getDescription().getVersion() + " ~~ Created by turt2live)");
+		getLogger().log(Level.INFO, "[DumbWarp] Disabled plugin, the dumb warps are so sad to go! :(");
 	}
 
 	@Override
