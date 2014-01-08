@@ -1,4 +1,4 @@
-package com.turt2live.dumbwarp;
+package com.turt2live.dumbcoin;
 
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;

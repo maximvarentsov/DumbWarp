@@ -1,5 +1,5 @@
 name: DumbWarp
-main: com.turt2live.dumbwarp.DumbWarp
+main: com.turt2live.dumbcoin.DumbWarp
 version: maven-version-number
 description: I hate downloading plugins.
 author: turt2live
