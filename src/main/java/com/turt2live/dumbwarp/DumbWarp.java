@@ -1,4 +1,4 @@
-package com.turt2live.dumbcoin;
+package com.turt2live.dumbwarp;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Location;

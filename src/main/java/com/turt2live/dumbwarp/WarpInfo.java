@@ -1,4 +1,4 @@
-package com.turt2live.dumbcoin;
+package com.turt2live.dumbwarp;
 
 /**
  * Represents warp information
