@@ -1,11 +1,11 @@
 package com.turt2live.dumbwarp;
 
+import com.turt2live.commonsense.DumbPlugin;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -14,7 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DumbWarp extends JavaPlugin {
+public class DumbWarp extends DumbPlugin {
 
     public static DumbWarp p;
 
@@ -114,6 +114,7 @@ public class DumbWarp extends JavaPlugin {
         p = this;
 
         saveDefaultConfig();
+        initCommonSense(66026);
 
         // Load warps
         for (String warpName : getConfig().getKeys(false)) {
