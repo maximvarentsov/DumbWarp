@@ -14,7 +14,6 @@ import java.util.List;
 
 public class DumbWarp extends DumbPlugin {
 
-    // TODO: TEST UPDATER
     private WarpManager manager;
 
     @Override
@@ -128,6 +127,10 @@ public class DumbWarp extends DumbPlugin {
                 sendMessage(sender, ChatColor.RED + "No permission.");
             } else {
                 List<Warp> warps = manager.getWarps();
+                if (warps.size() <= 0) {
+                    sendMessage(sender, ChatColor.RED + "No warps!");
+                    return true;
+                }
                 int startAt = 0;
                 if (args.length > 0) {
                     try {
