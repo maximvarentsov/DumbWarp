@@ -1,5 +1,6 @@
 package com.turt2live.dumbwarp;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -13,10 +14,12 @@ public class Warp {
     private String world;
     private double x, y, z;
     private float pitch, yaw;
+    private String name;
 
     /**
      * Creates a new warp
      *
+     * @param warpName  the warp name
      * @param worldName the world name
      * @param x         the x location
      * @param y         the y location
@@ -24,10 +27,11 @@ public class Warp {
      * @param pitch     the pitch
      * @param yaw       the yaw
      */
-    public Warp(String worldName, double x, double y, double z, float pitch, float yaw) {
-        if (worldName == null) {
+    public Warp(String warpName, String worldName, double x, double y, double z, float pitch, float yaw) {
+        if (worldName == null || warpName == null) {
             throw new IllegalArgumentException("No dumb names");
         }
+        this.name = warpName;
         this.world = worldName;
         this.x = x;
         this.y = y;
@@ -39,9 +43,14 @@ public class Warp {
     /**
      * Creates a new warp
      *
+     * @param warpName the warp name
      * @param location the location for the warp
      */
-    public Warp(Location location) {
+    public Warp(String warpName, Location location) {
+        if (location == null || warpName == null) {
+            throw new IllegalArgumentException("No dumb names");
+        }
+        this.name = warpName;
         this.world = location.getWorld().getName();
         this.x = location.getX();
         this.y = location.getY();
@@ -56,16 +65,15 @@ public class Warp {
      * @return the Bukkit location
      */
     public Location toBukkit() {
-        return new Location(DumbWarp.p.getServer().getWorld(world), x, y, z, yaw, pitch);
+        return new Location(Bukkit.getWorld(world), x, y, z, yaw, pitch);
     }
 
     /**
      * Saves the warp to a configuration file.
      *
-     * @param name   the name to save it under
      * @param config The config file to save to
      */
-    public void save(String name, FileConfiguration config) {
+    public void save(FileConfiguration config) {
         config.set(name + ".world", world);
         config.set(name + ".x", x);
         config.set(name + ".y", y);
@@ -128,4 +136,7 @@ public class Warp {
         return yaw;
     }
 
+    public String getName() {
+        return name;
+    }
 }
